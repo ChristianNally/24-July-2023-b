@@ -14,7 +14,6 @@ console.log(myPromise);
 //   console.log('data is', data);
 // });
 
-
 return myPromise // 1000ms to resolve
   .then((data) => {
     console.log('data is', data);
@@ -36,5 +35,4 @@ return myPromise // 1000ms to resolve
   })
   .then((data) => {
     console.log('number five');
-  })
-
+  });

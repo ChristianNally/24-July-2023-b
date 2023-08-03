@@ -7,11 +7,9 @@ const rl = readline.createInterface({
 
 const answers = [];
 
-rl.question('What do you think of Node.js? ', (err, answer) => {
-  if (err) {}
+rl.question('What do you think of Node.js? ', (answer) => {
   answers.push(answer);
-  rl.question('What\'s your name? ', (err, answer) => {
-    if (err) {}
+  rl.question('What\'s your name? ', (answer) => {
     answers.push(answer);
     rl.question('What\'s your favourite activity? ', (answer) => {
       answers.push(answer);

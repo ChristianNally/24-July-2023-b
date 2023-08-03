@@ -31,4 +31,4 @@ promiseTwo
   })
   .catch((err) => {
     console.log('an error occurred', err);
-  })
+  });
