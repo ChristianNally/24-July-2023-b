@@ -6,3 +6,4 @@
 * [W02D02 - Async Control Flow](/w02d2)
 * [W02D03 - Networking with TCP + HTTP](/w02d3)
 * [W02D04 - Promises](/w02d04)
+* [W03D01 - Web Servers 101](/w03d01)
