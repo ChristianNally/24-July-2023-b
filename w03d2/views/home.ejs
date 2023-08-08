@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Restaurant Homepage</title>
+</head>
+<body>
+<h1>My Awesome Online Restaurant App!</h1>
+<p>Hello, </p>
+<p>I heard that you like to eat . Is this nasty rumour true!?!?!?</p>
+
+<ul>
+    <% for (let item of listOfFoods) { %>
+        <li><a href="/fooditem/<%= item %>"><%= item %></a></li>
+    <% } %>
+</ul>
+
+<a href="/add">Add a New Item</a>
+
+</body>
+</html>
