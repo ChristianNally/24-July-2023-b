@@ -1,90 +1,100 @@
-const express = require("express");
-const PORT = 8082;
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
+const express = require('express');
+const cookieParser = require('cookie-parser');
 
 const app = express();
+const PORT = 8881;
 
-app.set("view engine","ejs");
+app.set('view engine', 'ejs');
 
-
-//
-// Users Data
-//
-
-const users = {'nally': "qwerty"};
-
-//
-// Middleware
-//
-
-app.use(bodyParser.urlencoded({ extended: false}));
+// MIDDLEWARE
+app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
-//
-// Routes
-//
+// DATABASE
+const users = {
+  'nally': {
+    username: 'nally',
+    password: 'password'
+  },
+  'monkey': {
+    username: 'monkey',
+    password: 'fuzz'
+  },
+};
 
-app.get('/',(req,res)=>{
-  res.render('homepage');
+// ROUTES
+app.get('/', (req, res) => {
+  console.log('users', users);
+  res.render('home');
 });
 
-// Login Routes
-
-app.get('/login',(req,res)=>{
-  res.render("login");
+// Registration Route
+app.get('/register', (req, res) => {
+  res.render('register');
 });
 
-// login submit handler
-app.post("/login",(req,res)=>{
-  console.log("login req.body:",req.body);
-  const testName = req.body.username;
-  const testPassword = req.body.password;
-  if (users[testName] && users[testName] === testPassword){ // the user is authentic
-    res.cookie("user",testName);
-    res.redirect("/profile");
-    // res.end();
+app.post('/register', (req, res) => {
+  const requestedUsername = req.body.username;
+  const requestedPassword = req.body.password;
+
+  if (users[requestedUsername]){
+    res.send('user already exists. <a href="/">Home</a>');
+    return;
   } else {
-    res.redirect("/login");
+    users[requestedUsername] = {
+      username: requestedUsername,
+      password: requestedPassword
+    };
+    res.redirect('/login');
+  }
+
+});
+
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+app.post('/login', (req, res) => {
+  const candidateUsername = req.body.username;
+  const candidatePassword = req.body.password;
+
+  if (!users[candidateUsername]){
+    console.log('username does NOT exist');
+    res.redirect('/');
+    return;
+  }
+
+  if (candidatePassword === users[candidateUsername].password) {
+    console.log(`passwords match`);
+    res.cookie('user', candidateUsername);
+    res.redirect('/profile');
+  } else {
+    console.log('passwords do NOT match');
+    res.redirect('/');
   }
 });
 
-// Registration Routes
-
-app.get('/register',(req,res)=>{
-  res.render("register");
-});
-
-// registeration submit handler
-app.post("/register",(req,res)=>{
-  console.log("register req.body:",req.body);
-  const newName = req.body.username;
-  const newPassword = req.body.password;
-
-  users[newName] = newPassword;
-  res.cookie("user",newName);
-
-  res.redirect("/profile");
-});
-
-
-// Profile Page
-app.get('/profile',(req,res)=>{
-  console.log("req.cookies:",req.cookies);
-  if (users[req.cookies.user]){
-    const templateVars = { password: users[req.cookies.user] };
+app.get('/profile', (req, res) => {
+  console.log('req.cookies', req.cookies);
+  const userCookie = req.cookies.user;
+  if (users[userCookie]){
+    const templateVars = {
+      username: userCookie,
+      password: users[userCookie].password
+    };
     res.render('profile', templateVars);
   } else {
     res.redirect('/login');
   }
+
 });
 
-// Logout Route
-app.get("/logout",(req,res)=>{
-  res.clearCookie("user");
-  res.redirect("/");
+app.get('/logout', (req, res) => {
+  res.clearCookie('user');
+  res.redirect('/');
 });
 
-app.listen(PORT,"localhost", ()=>{
-  console.log(`Server is listening on port ${PORT}`);
+
+app.listen(PORT, () => {
+  console.log(`Server is listening to PORT=${PORT}`);
 });
