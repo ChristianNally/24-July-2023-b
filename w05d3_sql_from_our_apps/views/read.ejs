@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Read</title>
+</head>
+<body>
+  
+  <h2>Objective Detail Page</h2>
+
+  <% for (let ii=0; ii < objectives.length; ii++) { %>
+  <div>
+    <div>ID: <%= objectives[ii].id %></div>
+    <div>QUESTION: <%= objectives[ii].question %></div>
+    <div>ANSWER: <%= objectives[ii].answer %></div>
+    <div>TYPE: <%= objectives[ii].type %></div>
+    <div>SORT: <%= objectives[ii].sort %></div>
+  </div>
+  <% } %>
+
+</body>
+</html>

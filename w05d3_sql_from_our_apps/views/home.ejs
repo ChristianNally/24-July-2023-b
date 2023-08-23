@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+</head>
+<body>
+  
+  <h2>LHL Web Development Bootcamp Objectives</h2>
+
+  <table>
+    <thead>
+      <tr><th>ID</th><th>Day ID</th><th>Question</th></tr>
+    </thead>
+    <tbody>
+      <% for (let ii=0; ii < objectives.length; ii++) { %>
+      <tr>
+        <td><a href="/objectives/<%= objectives[ii].id %>"><%= objectives[ii].id %></a></td>
+        <td><%= objectives[ii].day_id %></td>
+        <td><%= objectives[ii].question %></td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+</body>
+</html>
