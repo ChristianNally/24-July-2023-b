@@ -10,3 +10,4 @@
 * [W03D02 - CRUD with Express](/w03d2)
 * [W03D03 - HTTP Cookies & User Authentication](/w03d3)
 * [W03D04 - Security & Real World HTTP Servers](/w03d04)
+* [W08D01 - Data Fetching & Other Side Effects](/w08d01)
