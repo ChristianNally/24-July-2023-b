@@ -1,10 +1,12 @@
 const express = require('express');
 const morgan = require('morgan');
+// const cors = require('cors');
 
 const app = express();
 const port = 3002;
 
 app.use(morgan('dev'));
+// app.use(cors()); // any other origin can make requests to this server
 
 const todos = [
   {
