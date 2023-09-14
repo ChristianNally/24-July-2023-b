@@ -11,3 +11,4 @@
 * [W03D03 - HTTP Cookies & User Authentication](/w03d3)
 * [W03D04 - Security & Real World HTTP Servers](/w03d04)
 * [W08D01 - Data Fetching & Other Side Effects](/w08d01)
+* [W08D05 - Intro to Ruby](/w08d05)
